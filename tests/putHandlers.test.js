@@ -2,13 +2,23 @@
 const config = require('../config');
 
 const requestBody = {
-    "price": 15
+    "name": "Delete Me",
+    "productsList": [
+        {
+            "id": 1,
+            "quantity": 4
+        },
+        {
+            "id": 5,
+            "quantity": 2
+        }
+    ]
 }
 
 test('Should return 200 status code', async () => {
 	let actualStatusCode;
     try {
-		const response = await fetch(`${config.API_URL}/api/v1/products/5`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
@@ -22,10 +32,10 @@ test('Should return 200 status code', async () => {
 	expect(actualStatusCode).toBe(200)
 });
 
-test('Response body contains the expected data', async () => {
+test('Should contain the expected data', async () => {
 	let actualResponseBody
     try {
-        const response = await fetch(`${config.API_URL}/api/v1/products/5`, {
+        const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json'
@@ -37,5 +47,5 @@ test('Response body contains the expected data', async () => {
         console.error(error);
     }
 	
-	expect(actualResponseBody).toEqual({'ok': true});
+	expect(actualResponseBody.ok).toBe(true);
 });

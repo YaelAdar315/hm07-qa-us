@@ -33,24 +33,27 @@ In order to execute the project you need to clone the new repo from GitHub to yo
 4. Running the Tests
 Test 1: GET Method
 	-Open the getHandler.test.js file. The endpoint used is “/api/v1/warehouses”.
-	-Type npx jest getHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Response body should contain names of the warehouses”.
+	-Type npx jest getHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Should contain names of the warehouses”.
 
 Test 2: POST Method
 	-Open the postHandler.test.js file. The endpoint used is “/api/v1/warehouses/check”.
-	-Type npx jest postHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Response body contains the expected data”.
+	-Type npx jest postHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Should contain the expected data”.
 
 Test 3: PUT Method
-	-Open the putHandler.test.js file. The endpoint used is “/api/v1/products/5”.
-	-Type npx jest putHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Response body contains the expected data”.
+	-Create a kit on Postman using POST with the endpoint "/api/v1/kits" using this request body:
+{
+    "cardId": 7, 
+    "name": "Delete Me" 
+} 
+	-Open the putHandler.test.js file. The endpoint used is “/api/v1/kits/7”.
+	-Type npx jest putHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Should contain the expected data”.
+	-Additionaly you can check if the database values have been updated using a GET endpoint. In this case it should be GET "/api/v1/kits/search?name=Delete+Me"
 
 Test 4: DELETE Method
-	-Create a kit using Postman using this request body:
-{
-    "cardId": 9, 
-    "name": "Fresh Salad" 
-} 
-	-Open the deleteHandler.test.js file. The endpoint used is “/api/v1/kits/9”.
-	-Type npx jest deleteHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Response body should contain the expected data”.
+	-Either use the created kit for the PUT method or create a new one using POST.
+	-Open the deleteHandler.test.js file. The endpoint used is “/api/v1/kits/7”.
+	-Type npx jest deleteHandlers.test.js in the terminal console of VS Code to check if the code works and if the actual result matches the expected result. The tests are named “Should return 200 status code” and “Should contain the expected data”.
+	-Additionaly you can check if the database values have been updated using a GET endpoint. In this case it should be GET "/api/v1/kits/search?name=Delete+Me"
 
 5. Test Cases 
 Test 1: GET Method
@@ -63,7 +66,7 @@ The response body checks the availability of the products with these IDs: 5, 4. 
 
 Test 3: PUT Method
 The request returns the 200 OK status code - PASSED
-The response body shows that the price of the product has been changed successfully - PASSED
+The response body confirms that the items have been added to the kit changed successfully - PASSED
 
 Test 4: DELETE Method
 The request returns the 200 OK status code - PASSED
@@ -83,7 +86,7 @@ Most of the code in the files was already written. Some variables were added in 
 
 “ let actualResponseBody: “: Same concept as the “letActualResponseBody”. This variable is used when testing the response body.
 
-“ test('Response body contains the expected data', async () => { “: The name indicates that the response body is being checked.
+“ test('Should contain the expected data', async () => { “: The name indicates that the response body is being checked.
 
 “ actualResponseBody = await response.json() “: the code stops execution while waiting for the response from the server to be parsed in JSON and then stored in actualResponseBody as an array.
 

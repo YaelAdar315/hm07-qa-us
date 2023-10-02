@@ -18,7 +18,7 @@ test('Should return 200 status code', async () => {
 });
 
 
-test('Response body should contain names of the warehouses', async () => {
+test('Should contain names of the warehouses', async () => {
 	let actualResponseBody;
 	
 	try {
